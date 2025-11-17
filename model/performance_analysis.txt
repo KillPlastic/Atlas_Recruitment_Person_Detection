@@ -15,3 +15,8 @@ Com base nas imagens classificadas pelo modelo e na confusion matrix é fácil v
 Há ainda alguma confusão de outros objetos do background por pessoas, mas esta falha não é tão problemática.
 É mais grave não detetar uma pessoa em risco de vida, do que confundir um objeto por alguém.
 Na próxima fase do projeto será usado SAHI para mitigar este primeiro problema do modelo e melhorar o desempenho do modelo.
+
+
+
+
+                
