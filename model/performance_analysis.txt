@@ -1,0 +1,17 @@
+Nesta secção são apresentados e analisados os resultados obtidos pelo modelo YOLOv11n treinado sobre o dataset construído para este projeto. 
+O objetivo é avaliar o desempenho do modelo na deteção de pessoas em cenários de busca e salvamento (SaR), identificando também limitações e potenciais melhorias.
+O dataset usado contém um total de x imagens anotadas (depois de augmentation) divididas em train/test/val num split de 80%/10%/10%.
+Este é um dos setbacks do treino, uma vez que para construir um modelo robusto seriam precisas mais de 5,000.
+O treino foi feito usando os seguintes parametros:
+    !yolo train model=yolo11n.pt data=/content/Atlas-Recruitment-5/data.yaml epochs=200 imgsz=1024 mosaic=1.0 mixup=0.2 multi_scale=True batch=8 lr0=0.005
+Estes foram sendo ajustados em busca de cada vez melhores resultados. Alterando apenas o learning rate, epochs e batch os resultados pouco variavam. 
+A introdução de parâmetros como mosaic, mixup e multi_scale assim como a mudança de imgsz de 640 para 1024 foram sugestões obtidas do ChatGPT.
+A ideia seria entender que outras técnicas poderiam ser usadas na fase de treino para melhorar a performance ainda mais com o mesmo dataset por base.
+O objetivo de as usar culmina numa tentativa de contrariar os setbacks do tamanho dos dados, aplicando algumas alterações às imagens durante o treino.
+Os resultados com estes parâmetros parecem mais promissores que os dos testes anteriores.
+A precision, que antes convergia por volta de 0.45, agora converge perto dos 0.65. 
+O recall do modelo subiu também de 0.27 para 0.4.
+Com base nas imagens classificadas pelo modelo e na confusion matrix é fácil ver que a maior fraqueza é na deteção de pessoas muito pequenas na imagem.
+Há ainda alguma confusão de outros objetos do background por pessoas, mas esta falha não é tão problemática.
+É mais grave não detetar uma pessoa em risco de vida, do que confundir um objeto por alguém.
+Na próxima fase do projeto será usado SAHI para mitigar este primeiro problema do modelo e melhorar o desempenho do modelo.
